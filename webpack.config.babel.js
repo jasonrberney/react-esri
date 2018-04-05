@@ -32,19 +32,46 @@ const base = {
         filename: 'index_bundle.js'
     },
     module: {
-        loaders: [
+        rules: [
             { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
             { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/},
-            { test: /\.css$/, loader: 'style-loader!css-loader?sourceMap&modules&localIdentName=[name]__[local]__[hash:base64:5]'},
-            { test: /\.scss$/, loaders: ["style", "css", "sass"], exclude: "/node_modules" },
+            {
+                test:/\.(s*)css$/,
+                use:['style-loader','css-loader', 'sass-loader']
+             }
+            //{ test: /\.css$/, loader: 'style-loader!css-loader?sourceMap&modules&localIdentName=[name]__[local]__[hash:base64:5]'},
+            //     //{ test: /\.scss$/, loader: 'style-loader!sass-loader?sourceMap&modules&localIdentName=[name]__[local]__[hash:base64:5]'},
+            //     { test: /\.scss$/, loaders: ['style-loader', 'css-loader', 'sass-loader'] },
+            // ]
+            // {
+            //     test: /\.scss$/,
+            //     use: [
+            //         {
+            //             loader: 'style-loader'
+            //         },
+            //         {
+            //             loader: 'css-loader',
+            //             options: {
+            //                 sourceMap: true
+            //             }
+            //         },
+            //         {
+            //             loader: 'sass-loader',
+            //             options: {
+            //                 sourceMap: true
+            //             }
+            //         }
+            //     ]
+            // }
         ]
     },
     resolve: {
-        root: path.resolve('./src')
+        extensions: [".js", ".jsx", ".json"]
     }
 }
 
 const developmentConfig = {
+     mode: 'development',
      devtool: 'cheap-module-inline-source-map',
      devServer: {
         contentBase: PATHS.build,
@@ -56,6 +83,7 @@ const developmentConfig = {
 }
 
 const productionConfig = {
+    mode: 'production',
     devtool: 'cheap-module-source-map',
     plugins: [HtmlWebpackPluginConfig, productionPlugin]
 }
