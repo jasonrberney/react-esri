@@ -1,12 +1,39 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App.jsx';
-import LandingPageContainer from './containers/LandingPageContainer/LandingPageContainer.jsx'
-import { Provider } from 'react-redux'
+import { AppContainer } from 'react-hot-loader';
+import { Provider } from 'react-redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
 
-//const store = createStore()
+import greeting from './redux/reducers/reducer';
+import Root from './config/Root';
 
-ReactDOM.render(
-    <LandingPageContainer />,
-    document.getElementById('root')
-);
+const reducers = combineReducers({ greeting });
+
+const store = createStore(reducers, compose(
+  applyMiddleware(thunk),
+  // hooks up Redux chrome extension. If extension does not exist, only take the first argument
+  window.devToolsExtension ? window.devToolsExtension() : f => f,
+));
+
+export { store as default };
+
+const render = (Component) => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <AppContainer>
+        <Component />
+      </AppContainer>
+    </Provider>,
+    document.getElementById('root'),
+  );
+};
+
+render(Root);
+
+if (module.hot) {
+  module.hot.accept('./config/Root', () => {
+    const newApp = require('./config/Root').default;
+    render(newApp);
+  });
+}
