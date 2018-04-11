@@ -2,15 +2,15 @@ import React from 'react';
 import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import App from '../../src/components/App';
+import LandingPage from '../../src/components/LandingPage/LandingPage';
 
 configure({ adapter: new Adapter() });
 
-describe('App Component', () => {
+describe('LandingPage Component', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<App />);
+    wrapper = shallow(<LandingPage />);
   });
 
   it('should exist', () => {

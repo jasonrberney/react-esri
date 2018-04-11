@@ -31,7 +31,7 @@
       "**/?(*.)(spec|test).js?(x)"
     ],
     "transform": {
-      "\\.js$": "babel-jest"
+      "\\.(js|jsx)$": "babel-jest"
     }
   },
   "dependencies": {
