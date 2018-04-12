@@ -3,3 +3,18 @@ $color: green;
 body {
   color: $color;
 }
+
+.landingPage {
+  padding-right: 25%;
+  padding-left: 25%;
+
+  h2 {
+    text-align: center;
+  }
+
+  #heading {
+    font-size: 50px;
+    font-family: fantasy;
+    color: blue;
+  }
+}
