@@ -1,5 +1,5 @@
 {
-  "extends": "airbnb",
+  "extends": "eslint:recommended",
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 6,
@@ -20,6 +20,14 @@
     "linebreak-style": "off",
     "global-require": "off",
     "semi": "warn",
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "no-unused-vars": "warn",
+    "no-console": "off",
+    "indent": "warn",
+    "comma-dangle": "warn",
+    "quotes": "warn",
+    "object-shorthand": "warn",
+    "no-var": "warn",
+    "arrow-parens": "warn"
   }
 }
